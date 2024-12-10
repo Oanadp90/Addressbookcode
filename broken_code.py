@@ -14,7 +14,8 @@ class ContactBook:
     def add_contact(self, name, phone_number, email):
 
         #This ADD contact isn't working...
-        self.contacts.add(name, phone_number, email)
+        self.contacts.add(name, phone_number, email)   #AttributeError: 'list' object has no attribute 'add'
+        #we will now remove line 17 in order to allow for our definition to work and print the information
         print(f"Contact '{name}' added successfully.")
 
     def display_all_contacts(self):
@@ -48,7 +49,7 @@ def main():
             name = input("Enter name: ")
             phone_number = input("Enter phone number: ")
             email = input("Enter email: ")
-            contact_book.add_contact(name, phone_number, email)
+            contact_book.add_contact(name, phone_number, email) #AttributeError: 'list' object has no attribute 'add'
         elif choice == "0":
             print("Exiting Contact Book. Goodbye!")
             break
@@ -57,4 +58,4 @@ def main():
             print("")
 
 if __name__ == "__main__":
-    main()
+    main()                    #AttributeError: 'list' object has no attribute 'add'
