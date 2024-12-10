@@ -55,11 +55,13 @@ class ContactBook:
                 return
         print(f"Contact with name {old_name} not found.")            
         
-      
-                     
-            
-
-    #Missing DELETE contact function
+    def delete(self,name):             #Missing DELETE contact function
+        for contact in self.contacts:
+            if contact.name == name:
+                self.contacts.remove(contact)
+                print(f"Contact '{name}' has been deleted.")
+                return
+        print(f"Contact with name {name} not found!")                  
 
 def main():
     contact_book = ContactBook()
