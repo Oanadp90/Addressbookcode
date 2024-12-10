@@ -12,25 +12,52 @@ class ContactBook:
         ]
 
     def add_contact(self, name, phone_number, email):
+        new_contact = Contact(name,phone_number,email)
+        self.contacts.append(new_contact)
 
         #This ADD contact isn't working...
-        self.contacts.add(name, phone_number, email)   #AttributeError: 'list' object has no attribute 'add'
+        #AttributeError: 'list' object has no attribute 'add'
         #we will now remove line 17 in order to allow for our definition to work and print the information
-        print(f"Contact '{name}' added successfully.")
+        #we will now add the phone number and email within the print statement on line 20, so that the message can be printed
+        print(f"Contact '{name}', '{phone_number}', '{email}' added successfully.")
 
-    def display_all_contacts(self):
-        if self.contacts:
-            print("All Contacts:")
-
-            #Errors in code here
-            for contact in contacts:
-                print(f"Name: {name}\nPhone: {phone_number}\nEmail: {contact.email}\n")
-        else:
+    def display_all_contacts(self): 
+        if not self.contacts:
             print("No contacts found.")
+        else:
+            print("All contacts: ")    
+        for contact in self.contacts:
+            print(f"Name: {contact.name}, Phone: {contact.phone_number}, Email: {contact.email}")
+            #Errors in code here : Condition statements are not set in the right way, it should start with if, continue with elif and finish with else
+            #So, in this cas we need to remove "for" and add "elif" on line 28 and also change "contact" to "Contact" and "contacts" to "self.contacts"
+            #Also fix the indentation on line 29 for the print statement to execute the print message
 
-    #Missing SEARCH contact function
+    def search_contact(self,name): #Missing SEARCH contact function
+        found = False
+        for contact in self.contacts:
+            if contact.name == name:
+                print(f"Found contact: Name: {contact.name}, Phone: {contact.phone_number}, Email: {contact.email}")
+                found = True
+                break
+        if not found:
+            print(f"Contact with name: {name} not found!")    
 
-    #Missing UPDATE contact function
+    def update_contact(self, old_name, new_name= None, new_phone= None, new_email= None): #Missing UPDATE contact function
+        for contact in self.contacts:
+            if contact.name == old_name:
+                if new_name:
+                    contact.name = new_name
+                if new_phone:
+                    contact.phone_number = new_phone
+                if new_email:
+                    contact.email = new_email
+                print(f"Updated contact: Name: {contact.name}, Phone: {contact.phone_number}, Email: {contact.email}")    
+                return
+        print(f"Contact with name {old_name} not found.")            
+        
+      
+                     
+            
 
     #Missing DELETE contact function
 
