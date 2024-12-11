@@ -100,7 +100,7 @@ def main():
             name = input("Enter name: ")
             contact_book.search_contact(name)
         elif choice == "4": #condition statement to decide if user will enter 4, call method contact_book.update_contact() to update the contact with the new name or phone number/email the user will choose
-            initial_name = input("Please enter the name of the contact to update: ")
+            initial_name = input("Please enter the name of the contact you wish to update: ")
             updated_name = input("Please enter the new name: ")
             updated_phone = input("Please enter the new number: ")
             updated_email = input("Please enter the new email: ")
@@ -111,7 +111,7 @@ def main():
         elif choice == "0": #contition statement that will allow user to exit the Addressbook
             print("Exiting Contact Book. Goodbye!")
             break # this is to break the loop once the user will choose 0
-        else:    # this is a condition statement from the structure if, elif and else to handle error when an user would input anything else except information for the Addressbook
+        else:    # this is a condition statement from the structure if, elif and else to handle error when an user would input anything else except information for the Addressbook and also print a message to let them know that they need to enter a valid input.
             print("Invalid choice. Please enter a valid option.")  
 
 if __name__ == "__main__":  #This is to run the code in the terminal as we have 2 different classes that we have built our code from, i hope this explanation makes sence.
