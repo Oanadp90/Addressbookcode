@@ -2,6 +2,7 @@
 from colorama import Fore
 #imported colorama library so that we can have a bit more colour to our code
 
+print("Welcome to the Address Book program!")
 
 class Contact:
     def __init__(self, name, phone_number, email):
@@ -12,8 +13,8 @@ class Contact:
 class ContactBook:
     def __init__(self):
         self.contacts = [
-            Contact("Alice", "1234567890", "alice@email.com"),
-            Contact("Bob", "9876543210", "bob@email.com")
+            Contact("Alice", "0754 322 532", "Alice@gmail.com"),
+            Contact("Tommy", "0743 223 493", "Tommy@yahoo.com")
         ]
 
     def add_contact(self, name, phone_number, email):
@@ -48,22 +49,22 @@ class ContactBook:
         if not found:   #If not found, print the message "Contact with "name: " was not found!"
             print(f"Contact with name: {name} not found!")    
           
-    def update_contact(self, old_name, new_name= None, new_phone= None, new_email= None): #Missing UPDATE contact function
+    def update_contact(self, initial_name, updated_name= None, updated_phone= None, updated_email= None): #Missing UPDATE contact function
         for contact in self.contacts:# Iterate through all contacts in the contact book
-            if contact.name == old_name: # Check if the current contact's name matches the one to be updated
-                if new_name:# If a new name is provided, update the contact's name
-                    contact.name = new_name
-                if new_phone:# If a new phone number is provided, update the contact's phone number
-                    contact.phone_number = new_phone
-                if new_email:# If a new email is provided, update the contact's email
-                    contact.email = new_email
+            if contact.name == initial_name: # Check if the current contact's name matches the one that needs to be updated
+                if updated_name:# If a new name is provided, update the contact's name
+                    contact.name = updated_name
+                if updated_phone:# If a new phone number is provided, update the contact's phone number
+                    contact.phone_number = updated_phone
+                if updated_email:# If a new email is provided, update the contact's email
+                    contact.email = updated_email
                 print(f"Updated contact: Name: {contact.name}, Phone: {contact.phone_number}, Email: {contact.email}") # Print the updated contact information 
                 return
-        print(f"Contact with name {old_name} not found.")    # If no contact with the given name is found, print an error message         
+        print(f"Contact with name {initial_name} not found.")    # If no contact with the given name is found, print an error message         
         
     def delete(self,name):             #Missing DELETE contact function
         for contact in self.contacts: #This function is done a similar way as the above so comments are the same,except this time i have 
-            #created a delete function so that the user can have an option to delete a contact by using the remove() method
+            #created a delete function so that the user can have an option to delete a contact by using the self.contacts.remove() method
             if contact.name == name:
                 self.contacts.remove(contact)
                 print(f"Contact '{name}' has been deleted.")
@@ -74,7 +75,7 @@ def main():
     contact_book = ContactBook()
 
     while True:    #Loop that will help our code check each condition statement and execute the code based
-        print(Fore.YELLOW + "\n--- Contact Book Menu ---") #Missing options for printing a message everytime the user will enter an option
+        print(Fore.YELLOW + "\n--- Contact Book Menu ---") #Missing options for printing a message everytime the user will enter an option, which will print out the Menu of the contact book that includes : Add a new contact, display all contacts, Search Contact, Update contact,Delete contact and Exit options for user to choose from.
         print(Fore.GREEN + "1. Add New Contact")
         print(Fore.MAGENTA + "2. Display All Contacts")
         print(Fore.RED + "3. Search Contact")
@@ -83,12 +84,13 @@ def main():
         print(Fore.LIGHTYELLOW_EX + "0. Exit")                      
         
         
-        choice = input(Fore.BLUE + "Enter your choice: ") #This variable is to allow the user to enter their choice
+        choice = input(Fore.BLUE + "Enter your choice: ") #This variable is for allowing the user to enter their choice
 
-
-        #if user will enter 1, add contact in the address book by calling contact_book.add_contact()method and giving the contact info as arguments.
-        if choice == "1":      # These are condition statements that will check and see what information the user will input
-            name = input("Enter name: ") #Also to add, display, search and delete based on what the user would enter
+        # These are condition statements that will check and see what information the user will input
+        #Also to add, display, search and delete based on what the user would enter
+        
+        if choice == "1":      #condition statement to decide if user will enter 1, add contact in the address book by calling contact_book.add_contact()method and giving the contact information as arguments: name, phone_number, email.
+            name = input("Enter name: ") 
             phone_number = input("Enter phone number: ")
             email = input("Enter email: ")
             contact_book.add_contact(name, phone_number, email)
@@ -98,11 +100,11 @@ def main():
             name = input("Enter name: ")
             contact_book.search_contact(name)
         elif choice == "4": #condition statement to decide if user will enter 4, call method contact_book.update_contact() to update the contact with the new name or phone number/email the user will choose
-            old_name = input("Please enter the name of the contact to update: ")
-            new_name = input("Please enter the new name: ")
-            new_phone = input("Please enter the new number: ")
-            new_email = input("Please enter the new email: ")
-            contact_book.update_contact(old_name, new_name, new_phone, new_email)
+            initial_name = input("Please enter the name of the contact to update: ")
+            updated_name = input("Please enter the new name: ")
+            updated_phone = input("Please enter the new number: ")
+            updated_email = input("Please enter the new email: ")
+            contact_book.update_contact(initial_name, updated_name, updated_phone, updated_email)
         elif choice == "5":  #condition statement to decide if user will enter 5, to delete a specific contact name that they would choose
             name = input("Enter the name of the contact to delete: ")
             contact_book.delete(name)
